@@ -1,0 +1,8 @@
+**/*.js.map
+.vscode/*
+node_modules/*
+.tscache/*
+.idea
+design.eap
+design.ldb
+_reports/*

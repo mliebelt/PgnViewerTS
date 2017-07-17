@@ -1,0 +1,7 @@
+{
+  "name": "pgnviewerts",
+  "proxy": "http://www-3g.dienste.telekom.de:8080",
+  "dependencies": {
+
+  }
+}
