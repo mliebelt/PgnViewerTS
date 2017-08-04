@@ -5,7 +5,7 @@ This project tries to rebuild PgnViewerJS in Typescript. I try to get rid of som
 * Follow the tutorials in [Typescript Handbook](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html): Seems reasonable, and could be followed easily.
 * Use the overview of [Typescript Programming](https://code.visualstudio.com/docs/languages/typescript) of the builders of this editor.
 
-![Build status on travis-ci.org](https://travis-ci.org/mliebelt/PgnViewerTS.svg?branch=master)
+[![Build status on travis-ci.org](https://travis-ci.org/mliebelt/PgnViewerTS.svg?branch=master)](https://travis-ci.org/mliebelt/PgnViewerTS#L1)
 
 ## Library structure
 
