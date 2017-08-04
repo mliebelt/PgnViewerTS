@@ -25,7 +25,7 @@ The building blocks for the application are:
   * PGN as collection of PgnGame
   * Collection of PGN managed by PgnUI
 * `move.ts`: PgnMove class to wrap the moves parsed by the parser in an "object" format. This allows to add some functions like `isChess`, `isMate`, .... and others.
-* `reader.ts`: PgnReader that (only) reads a PGN game and converts it to a PgnGame object. 
+* `reader.ts`: PgnReader that (only) reads a PGN game and converts it to a PgnGame object.
 * `writer.ts`: PgnWriter that writes PGN games in the canonical format.
 * (not started yet) `pgnv.ts`: Defines the following class: `PgnUI` (or any other name) that will implement the necessary UI things. This class may be tested only by UI tests (done with Karma).
 
