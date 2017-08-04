@@ -1,7 +1,7 @@
-import { PgnGame } from '../Game'
-import { PgnMove } from '../Move'
-import { PgnWriter } from '../Writer'
-import { PgnReader } from '../Reader'
+import { PgnGame } from '../game'
+import { PgnMove } from '../move'
+import { PgnWriter } from '../writer'
+import { PgnReader } from '../reader'
 
 describe ("Writing a PGN game", () => {
     // Ensure that whole games are created correctly

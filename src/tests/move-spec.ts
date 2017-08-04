@@ -1,6 +1,6 @@
-import { PgnMove } from "../Move"
-import { PgnGame } from "../Game"
-import { PgnReader } from '../Reader'
+import { PgnMove } from "../move"
+import { PgnGame } from "../game"
+import { PgnReader } from '../reader'
 
 describe("Move handling", () => {
     let pgn: PgnReader

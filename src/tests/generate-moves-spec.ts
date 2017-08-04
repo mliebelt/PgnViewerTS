@@ -1,6 +1,6 @@
-import { PgnGame } from '../Game'
-import { PgnMove } from '../Move'
-import { PgnReader } from '../Reader'
+import { PgnGame } from '../game'
+import { PgnMove } from '../move'
+import { PgnReader } from '../reader'
 
 describe ("PGN generating an array of moves", () => {
     // only care about producing an array of moves

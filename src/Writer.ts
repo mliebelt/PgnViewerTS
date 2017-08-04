@@ -2,9 +2,9 @@
  * Base Typescript file for writing PGN (Portable Game Notation).
  */
 /// <reference path='chess.js.d.ts' />
-import { PgnMove } from "./Move"
-import { PgnGame } from './Game'
-import { PgnReader } from './Reader'
+import { PgnMove } from "./move"
+import { PgnGame } from './game'
+import { PgnReader } from './reader'
 
 /**
  * The PgnWriter should be stateless and write one (or more) PGN games to a stream. This will be used to write later whole files

@@ -1,5 +1,5 @@
-import { PgnGame } from '../Game'
-import { PgnMove } from '../Move'
+import { PgnGame } from '../game'
+import { PgnMove } from '../move'
 import { PgnReader } from '../reader'
 
 describe ("PGN check games produced correct", () => {

@@ -1,6 +1,6 @@
-import { PgnGame } from '../Game'
-import { PgnMove } from '../Move'
-import { PgnReader } from '../Reader'
+import { PgnGame } from '../game'
+import { PgnMove } from '../move'
+import { PgnReader } from '../reader'
 
 describe ("PGN validate moves", () => {
     // only care about validating an array of PgnMoves

@@ -4,8 +4,8 @@
 /// <reference path='chess.js.d.ts' />
 import { Chess } from 'chess.js'
 import { parse } from "./pgn-parser"
-import { PgnMove } from "./Move"
-import { PgnGame } from './Game'
+import { PgnMove } from "./move"
+import { PgnGame } from './game'
 
 /**
  * The PgnReader should be stateless and read from a given notation a PGN database.
