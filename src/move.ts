@@ -7,6 +7,11 @@
 // enum Promotion { Q, R, B, N }
 // enum Figure { K, Q, R, B, N, P}
 // type Discriminator = Row | Column
+/**
+ * Base class for PGN Moves, contains all information that may be used later.
+ * 
+ * @class PgnMove
+ */
 class PgnMove {
     fig: string
     col: string
