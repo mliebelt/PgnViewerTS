@@ -170,13 +170,13 @@ export class PgnReader {
         return this.chess.fen()
     }
 
-    private static getMoveNumberFromPosition(fen) {
+    static getMoveNumberFromPosition(fen) {
         var tokens = fen.split(/\s+/)
         var move_number = parseInt(tokens[5], 10)
         return (tokens[1] === 'b') ? move_number : move_number - 1
     }
 
-    private static getTurnFromPosition(fen) {
+    static getTurnFromPosition(fen) {
         var tokens = fen.split(/\s+/)
         return tokens[1]
     }
