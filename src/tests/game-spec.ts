@@ -50,10 +50,7 @@ describe ("PGN check games produced correct", () => {
         })
 
         
-        // TODO Why is the dicscriminator needed her? See
-        // http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c8.2.3
-        // why this should not be necessary (but allowed) ...
-        it("if missing in variations", () => {
+       it("if missing in variations", () => {
             _validate("1. e4 e5 (d5 d4 dxe4)", null)
             expect(moves.length).toEqual(5)
             expect(moves[2].moveNumber).toEqual(1)
@@ -71,10 +68,27 @@ describe ("PGN check games produced correct", () => {
     })
     
 
-    // Disambiguration
-    it ("should need disambiguation where necessary", () => {
-        _validate("Nbd7", "rnbqkb1r/ppp2ppp/3p1n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 3 4")
-        expect(moves.length).toEqual(1)
-        expect(moves[0].notation).toEqual("Nbd7")
+    describe ("it should use disambiguation", () => {
+        it ("where necessary", () => {
+            _validate("Nbd7", "rnbqkb1r/ppp2ppp/3p1n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 3 4")
+            expect(moves.length).toEqual(1)
+            expect(moves[0].notation).toEqual("Nbd7")
+        })
+        it ("not, where not necessary", () => {
+            _validate("Ne7", "r1bqkbnr/ppp2ppp/2np4/1B2p3/3PP3/5N2/PPP2PPP/RNBQK2R b KQkq - 0 4")
+            expect(moves.length).toEqual(1)
+            expect(moves[0].notation).toEqual("Ne7")
+        })
+        it ("sometimes, where not necessary", () => {
+            _validate("N8e7", "r1bqkbnr/ppp2ppp/2np4/1B2p3/3PP3/5N2/PPP2PPP/RNBQK2R b KQkq - 0 4")
+            expect(moves.length).toEqual(1)
+            expect(moves[0].notation).toEqual("Ne7")
+        })
+        it ("not for wrong moves", () => {
+            expect(
+                function(){_validate("N6e7", "r1bqkbnr/ppp2ppp/2np4/1B2p3/3PP3/5N2/PPP2PPP/RNBQK2R b KQkq - 0 4")})
+                .toThrow("Notation: N6e7  not valid.")
+        })
+
     })
 }) // End of PGN check games produced correct

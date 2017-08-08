@@ -40,17 +40,23 @@ describe ("PGN validate moves", () => {
         expect(moves[3].notation).toEqual("Nc6")
     })
 
-    // This is wrong, because it should be a valid notation and not throw an error
     it ("should validate moves with wrong disambiguation", () => {
         var foo = function() { _validate('ee4 d5 xd5 Nbc6') }
-        //expect(foo).toThrow()
+        expect(moves[3].notation).toEqual("Nc6")
     })
 
     it ("should validate moves with pawns without disambiguation", () => {
         moves = _validate("e4 d5 xd5")
         expect(moves[0].notation).toEqual("e4")
         expect(moves[1].notation).toEqual("d5")
-        expect(moves[2].notation).toEqual("xd5")
+        expect(moves[2].notation).toEqual("exd5")
+    })
+
+    it ("should validate moves with nights with unnecessary disambiguation", () => {
+        moves = _validate("e4 e5 Ngf3")
+        expect(moves[0].notation).toEqual("e4")
+        expect(moves[1].notation).toEqual("e5")
+        expect(moves[2].notation).toEqual("Nf3")
     })
 
 }) // End of describe "PGN validate moves"

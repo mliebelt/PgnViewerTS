@@ -139,8 +139,13 @@ describe("PGN parsing", () => {
         expect(pgnResult.length).toEqual(4)
     })
 
-    it ("should allow moves with no disambiguation", () => {
+    it ("should allow pawn moves with no disambiguation", () => {
         pgnResult = _parse("e4 d5 d4 xd4")
+        expect(pgnResult.length).toEqual(4)
+    })
+
+    it ("should allow knight moves with unnecessary disambiguation", () => {
+        pgnResult = _parse("e4 d5 Ngf3 Nbc6")
         expect(pgnResult.length).toEqual(4)
     })
 })
