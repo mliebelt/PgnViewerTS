@@ -19,7 +19,7 @@ describe ("Writing a PGN game", () => {
         {orig: "1. e4", target: "1. e4"},
         {orig: "1. e4 1. e5", target: "1. e4 e5"},
         {orig: "1. e4  1. e5  2. Nf3    Nc6", target: "1. e4 e5 2. Nf3 Nc6"},
-        {orig: "1. e4 2. e5 3. Nf3 4. Nc6", target: "1. e4 e5 2. Nf3 Nc6"},
+        {orig: "1. e4 1... e5 2. Nf3 2. Nc6", target: "1. e4 e5 2. Nf3 Nc6"},
         {orig: "e4 e5 Nf3 Nc6", target: "1. e4 e5 2. Nf3 Nc6"},
         {orig: "e2-e4 e5 Ng1-f3 Nb8-c6", target: "1. e4 e5 2. Nf3 Nc6"},
     ]

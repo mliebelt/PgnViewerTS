@@ -143,6 +143,11 @@ export class PgnReader {
                 move.fen = this.chess.fen()
                 move.notation = PgnMove.san
                 var currentMoveNumber = PgnReader.getMoveNumberFromPosition(move.fen)
+                if (move.moveNumber) {
+                    if (move.moveNumber !== currentMoveNumber) {
+                        throw "Wrong move number for " + move.notation
+                    }
+                }
                 move.moveNumber = currentMoveNumber
                 if (this.chess.in_check()) {
                     move.check = "+"

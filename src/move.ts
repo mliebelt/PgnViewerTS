@@ -32,7 +32,7 @@ class PgnMove {
     
     constructor(
         fig: string, col: string, row: string, notation: string,
-        disc: string = null, strike: string = null,
+        disc: string = null, strike: string = null, moveNumber: number,
         commentBefore='', commentAfter='', commentMove='',
         previousMove: PgnMove, nags: string[] =[], check: string
         ) {
@@ -48,6 +48,7 @@ class PgnMove {
             this.row = row
             this.notation = notation
             this.check = check
+            this.moveNumber = moveNumber
         }
     
     /**
@@ -57,8 +58,8 @@ class PgnMove {
      */
     static buildMove(params:any): PgnMove {
         let cm = new PgnMove(params.fig, params.col, params.row,
-        params.notation, params.disc, params.strike, params.commentBefore,
-        params.commentAfter, params.commentMove, 
+        params.notation, params.disc, params.strike, params.moveNumber,
+        params.commentBefore, params.commentAfter, params.commentMove, 
         params.previousMove, params.nags, params.check)
         return cm
     }
