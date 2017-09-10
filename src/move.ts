@@ -1,12 +1,3 @@
-// var StringBuilder = require('stringbuilder')
-
-// enum Row { r1, r2, r3, r4, r5, r6, r7, r8 }
-// enum Column { a,b,c,d,e,f,g,h }
-// enum Strike { x }
-// enum Check { '+', '#' }
-// enum Promotion { Q, R, B, N }
-// enum Figure { K, Q, R, B, N, P}
-// type Discriminator = Row | Column
 /**
  * Base class for PGN Moves, contains all information that may be used later.
  * 

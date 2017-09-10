@@ -20,12 +20,13 @@ describe ("PGN validate", () => {
             expect(moves.length).toEqual(5)
             expect(moves[0].notation).toEqual('e4')
             expect(moves[0].col).toEqual('e')
+            expect(moves[0].nextMove).toEqual(moves[1])
+            expect(moves[1].previousMove).toEqual(moves[0])
             expect(moves[4].notation).toEqual('dxc6')
             expect(moves[4].strike).toEqual('x')
         })
 
-    })
-    // place holder for all functionality that validates PGN
+    }) // End of describe "PGN validate regular moves"
     
     describe ("sloppy moves", () => {
         it ("should ignore false checks and mates", () => {
@@ -63,7 +64,7 @@ describe ("PGN validate", () => {
             expect(moves[2].notation).toEqual("Nf3")
         })
 
-    })
+    }) // End of describe "PGN validate sloppy moves"
 
     describe ("move numbers", () => {
         it("should validate no move numbers", () => {
@@ -104,7 +105,46 @@ describe ("PGN validate", () => {
                 function(){ _validate("1. e4 e5 3. Nf3 Nc6 4. Bb5 a6")})
                 .toThrow("Wrong move number for Nf3")
         })
-    })
-    
+    }) // End of describe "PGN validate move numbers"
 
-}) // End of describe "PGN validate moves"
+    describe("variations", () => {
+        xit("read variations", () => {
+            // read normal variations
+        })
+
+        xit("with move numbers", () => {
+            // check the held move numbers
+        })
+
+        xit("without move numbers", () => {
+            // check the computed move numbers as well
+        })
+    })// End of describe "PGN validate variations"
+
+    describe("NAGs", () => {
+        xit("understand special symbols (like !, ??, ...", () => {
+
+        })
+
+        xit("understand $-notation", () => {
+            
+        })
+
+    }) // End of describe "PGN validate NAGs"
+    
+    describe("special moves", () => {
+        xit("should understand castling", () => {
+            // all possible castling notations
+        })
+
+        xit("should understand en passent (no special notation for it)", () => {
+            // one en passent situation
+        })
+
+        xit("should understand all kind of promotions", () => {
+            // find a position with all kind of promotions possible
+        })
+
+    }) // End of describe "PGN validate special moves"
+
+}) // End of describe "PGN validate"

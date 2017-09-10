@@ -14,7 +14,7 @@ describe("Move handling", () => {
 
     })
 
-    it("should understand mmove read from pgn string", () => {
+    it("should understand moves read from pgn string", () => {
         pgnResult = _parse("1. e2 e4")
         expect(pgnResult.length).toEqual(2)
     })
@@ -24,6 +24,7 @@ describe("Move handling", () => {
         var cm = PgnMove.buildMove(pgnResult[0])
         // console.log(cm)
         expect(cm).not.toBeNull()
+        expect(cm.notation).toEqual("e4")
     })
 
     it ("should understand partial object to construct from", () => {

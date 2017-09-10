@@ -75,7 +75,7 @@ export class PgnReader {
      * @param {PgnMove[]} PgnMoves the resulting moves (may be already filled)
      * @returns {PgnMove} the first generated move (or null, if none included)
      * 
-     * @memberOf PGN
+     * @memberOf PgnReader
      */
     private generateLine(parsedMoves, pgnMoves: PgnMove[]): PgnMove {
         let resMove: PgnMove = null
@@ -124,11 +124,6 @@ export class PgnReader {
         if ( (startPosition === undefined) || (startPosition === null) ) {
             startPosition = this.defaultStartPosition()
         }
-        try {
-            throw "Just to catch"
-        } catch(err) {
-            // Continue
-        }
 
         for(let move of moves) {
             // Ensure that position before the move is setup
@@ -138,10 +133,10 @@ export class PgnReader {
                 this.chess.load(move.previousMove.fen)
             }
             // Try to make the move, if non-null result, it was successful
-            let PgnMove = this.chess.move(move.notation, {sloppy: true})
-            if (PgnMove) {
+            let pgnMove = this.chess.move(move.notation, {sloppy: true})
+            if (pgnMove) {
                 move.fen = this.chess.fen()
-                move.notation = PgnMove.san
+                move.notation = pgnMove.san
                 var currentMoveNumber = PgnReader.getMoveNumberFromPosition(move.fen)
                 if (move.moveNumber) {
                     if (move.moveNumber !== currentMoveNumber) {
@@ -156,7 +151,7 @@ export class PgnReader {
                 } else {
                     move.check = ''
                 }
-                if ( (PgnMove.flags == 'c') || (PgnMove.flags == 'e') ) {
+                if ( (pgnMove.flags == 'c') || (pgnMove.flags == 'e') ) {
                     move.strike = 'x'
                 } else {
                     move.strike = ''
