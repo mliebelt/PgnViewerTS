@@ -42,6 +42,9 @@ class PgnMove {
             this.check = check
             this.moveNumber = moveNumber
             this.promotion = promotion
+            if (this.nags === null) {
+                this.nags = []
+            }
         }
     
     /**
@@ -53,7 +56,7 @@ class PgnMove {
         let cm = new PgnMove(params.fig, params.col, params.row,
         params.notation, params.disc, params.strike, params.moveNumber, params.promotion,
         params.commentBefore, params.commentAfter, params.commentMove, 
-        params.previousMove, params.nags, params.check)
+        params.previousMove, params.nag, params.check)
         return cm
     }
     // toString(): string {

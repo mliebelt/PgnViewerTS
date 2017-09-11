@@ -197,8 +197,11 @@ describe("PGN parsing", () => {
     })
 
     describe("special moves", () => {
-        xit("should understand castling", () => {
-            // have both short and long castling notations
+        it("should understand castling", () => {
+            pgnResult = _parse("1. O-O O-O-O")
+            expect(pgnResult.length).toEqual(2)
+            expect(pgnResult[0].notation).toEqual("O-O")
+            expect(pgnResult[1].notation).toEqual("O-O-O")
         })
 
         it("should understand promotions", () => {

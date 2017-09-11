@@ -28,7 +28,7 @@ describe ("PGN validate", () => {
 
     }) // End of describe "PGN validate regular moves"
     
-    xdescribe ("sloppy moves", () => {
+    describe ("sloppy moves", () => {
         it ("should ignore false checks and mates", () => {
             moves = _validate('e4# d5+ exd5+ Qxd5#', null)
             expect(moves[0].notation).toEqual("e4")
@@ -66,7 +66,7 @@ describe ("PGN validate", () => {
 
     }) // End of describe "PGN validate sloppy moves"
 
-    xdescribe ("move numbers", () => {
+    describe ("move numbers", () => {
         it("should validate no move numbers", () => {
             moves = _validate("e4 e5 Nf3 Nc6 Bb5 a6", null)
             expect(moves.length).toEqual(6)
@@ -107,38 +107,108 @@ describe ("PGN validate", () => {
         })
     }) // End of describe "PGN validate move numbers"
 
-    xdescribe("variations", () => {
-        xit("read variations", () => {
+    describe("variations", () => {
+        it("read variations", () => {
             // read normal variations
+            moves = _validate("1. e4 e5 (1... d5 2. d4) (1... c5 2. Nf3)", null)
+            expect(moves.length).toEqual(6)
+            expect(moves[0].variations.length).toEqual(0)
+            expect(moves[1].variations.length).toEqual(2)
+            expect(moves[1].variations[0]).toEqual(moves[2])
+            expect(moves[1].variations[1]).toEqual(moves[4])
+            expect(moves[4].previousMove).toEqual(moves[0])
+            expect(moves[5].previousMove).toEqual(moves[4])
+            expect(moves[2].previousMove).toEqual(moves[0])
+            expect(moves[3].previousMove).toEqual(moves[2])
         })
 
-        xit("with move numbers", () => {
+        it("with move numbers", () => {
             // check the held move numbers
+            moves = _validate("1. e4 e5 (1... d5 2. d4) (1... c5 2. Nf3)", null)
+            expect(moves[0].moveNumber).toEqual(1)
+            expect(moves[1].moveNumber).toEqual(1)
+            expect(moves[2].moveNumber).toEqual(1)
+            expect(moves[3].moveNumber).toEqual(2)
+            expect(moves[4].moveNumber).toEqual(1)
+            expect(moves[5].moveNumber).toEqual(2)
         })
 
-        xit("without move numbers", () => {
+        it("without move numbers", () => {
             // check the computed move numbers as well
+            moves = _validate("e4 e5 (d5 d4) (c5 Nf3)", null)
+            expect(moves[0].moveNumber).toEqual(1)
+            expect(moves[1].moveNumber).toEqual(1)
+            expect(moves[2].moveNumber).toEqual(1)
+            expect(moves[3].moveNumber).toEqual(2)
+            expect(moves[4].moveNumber).toEqual(1)
+            expect(moves[5].moveNumber).toEqual(2)
         })
     })// End of describe "PGN validate variations"
 
-    xdescribe("NAGs", () => {
-        xit("understand special symbols (like !, ??, ...", () => {
-
+    describe("NAGs", () => {
+        it("understand special symbols (like !, ??, ...", () => {
+            moves = _validate("1. e4! Na6? 2. d4 !! b6 ?? 3. Nc3?! Nf6 !?4. Be2=", null)
+            expect(moves.length).toEqual(7)
+            expect(moves[0].nags.length).toEqual(1)
+            expect(moves[1].nags.length).toEqual(1)
+            expect(moves[2].nags.length).toEqual(1)
+            expect(moves[3].nags.length).toEqual(1)
+            expect(moves[4].nags.length).toEqual(1)
+            expect(moves[5].nags.length).toEqual(1)
+            expect(moves[6].nags.length).toEqual(1)
         })
 
-        xit("understand $-notation", () => {
+        it("understand $-notation", () => {
+            moves = _validate("1. e4$1 Na6$2 2. d4 $3 b6 $4 3. Nc3$5 Nf6 $6 4. Be2$7", null)
+            expect(moves.length).toEqual(7)
+            expect(moves[0].nags.length).toEqual(1)
+            expect(moves[1].nags.length).toEqual(1)
+            expect(moves[2].nags.length).toEqual(1)
+            expect(moves[3].nags.length).toEqual(1)
+            expect(moves[4].nags.length).toEqual(1)
+            expect(moves[5].nags.length).toEqual(1)
+            expect(moves[6].nags.length).toEqual(1)
+        })
 
+        it("understand range of $-notation", () => {
+            expect(
+                function(){ _validate("1. e4 $1 e5 $10 2. d4 $50 d5 $139 3. c4 $140", null)}).toThrow("NAG: $140 number is too high. Maximum is 139.")
+        
         })
 
     }) // End of describe "PGN validate NAGs"
     
     describe("special moves", () => {
-        xit("should understand castling", () => {
-            // all possible castling notations
+        it("should understand short castling", () => {
+            moves = _validate("5. O-O O-O", "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2P2N2/PP1P1PPP/RNBQK2R w KQkq - 1 5")
+            expect(moves.length).toEqual(2)
+            expect(moves[0].notation).toEqual("O-O")
+            expect(moves[1].notation).toEqual("O-O")
         })
 
-        xit("should understand en passent (no special notation for it)", () => {
+        it("should understand long castling", () => {
+            moves = _validate("8. O-O-O O-O-O", "r3kb1r/ppqbpppp/2np1n2/8/3NP3/2N1B3/PPPQ1PPP/R3KB1R w KQkq - 7 8")
+            expect(moves.length).toEqual(2)
+            expect(moves[0].notation).toEqual("O-O-O")
+            expect(moves[1].notation).toEqual("O-O-O")
+        })
+
+        it("should understand en passent (no special notation for it)", () => {
             // one en passent situation
+            moves = _validate("exf6", "rnbqkbnr/ppp1p1pp/8/3pPp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3")
+            expect(moves.length).toEqual(1)
+            expect(moves[0].notation).toEqual("exf6")
+        })
+
+        it("should falsify wrong move numbers", () => {
+            expect(
+                function(){ _validate("1. e4 e5 3. Nf3 Nc6 4. Bb5 a6", null)})
+                .toThrow("Wrong move number for Nf3")
+        })
+        it("should understand wrong en passent", () => {
+            // one en passent situation
+            expect(
+                function(){ _validate("exd6", "rnbqkbnr/ppp1p1pp/8/3pPp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3")}).toThrow("Notation: exd6  not valid.")
         })
 
         it("should understand all kind of promotions", () => {

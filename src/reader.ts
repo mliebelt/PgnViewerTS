@@ -156,6 +156,7 @@ export class PgnReader {
                 } else {
                     move.strike = ''
                 }
+                this.checkNAGs(move)
                 // let disam = this.chess.get_disambiguator(PgnMove, true)
                 // move.disc = disam
             } else {
@@ -168,6 +169,24 @@ export class PgnReader {
     private defaultStartPosition() {
         this.chess.reset()
         return this.chess.fen()
+    }
+
+    private checkNAGs(move) {
+        if (move.nags === null) {
+            throw "Move: " + move.notation + " has wrong format for NAGs: " + move.nags
+        }
+        move.nags.forEach(element => {
+            let numb = parseInt(element.slice(1))
+            if (isNaN(numb)) {
+                throw "NAG: " + element + " has not the right format."
+            }
+            if (numb < 1) {
+                throw "NAG: " + element + " number is too low. Minimum is 1."
+            }
+            if (numb > 139) {
+                throw "NAG: " + element + " number is too high. Maximum is 139."
+            }
+        });
     }
 
     static getMoveNumberFromPosition(fen) {
