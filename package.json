@@ -8,14 +8,12 @@
     "stringbuilder": "0.0.11"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.5.46",
+    "@types/jasmine": "^2.5.54",
     "@types/node": "^7.0.8",
+    "@types/pegjs": "^0.10.0",
+    "browserify": "^14.4.0",
     "eslint": "^3.18.0",
-    "jasmine": "^2.5.3",
-    "karma": "^1.5.0",
-    "karma-html-detailed-reporter": "^1.1.20",
-    "karma-jasmine": "^1.1.0",
-    "karma-phantomjs-launcher": "^1.0.4",
+    "jasmine": "^2.8.0",
     "markdown-it": "^8.3.1",
     "markdown-it-emoji": "^1.3.0",
     "nodemon": "^1.11.0",
@@ -23,7 +21,6 @@
     "ts-loader": "^2.0.2",
     "tsify": "^3.0.1",
     "typescript": "^2.2.2",
-    "typings": "^2.1.0",
     "webpack": "^2.2.1"
   },
   "scripts": {

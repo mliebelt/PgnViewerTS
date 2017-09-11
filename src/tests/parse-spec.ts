@@ -201,8 +201,17 @@ describe("PGN parsing", () => {
             // have both short and long castling notations
         })
 
-        xit("should understand promotions", () => {
-            // understand all kind of promotions
+        it("should understand promotions", () => {
+            pgnResult = _parse("1. h8=Q b1=R 2. g8=B a1=N")
+            expect(pgnResult.length).toEqual(4)
+            expect(pgnResult[0].notation).toEqual("h8=Q")
+            expect(pgnResult[0].promotion).toEqual("Q")
+            expect(pgnResult[1].notation).toEqual("b1=R")
+            expect(pgnResult[1].promotion).toEqual("R")
+            expect(pgnResult[2].notation).toEqual("g8=B")
+            expect(pgnResult[2].promotion).toEqual("B")
+            expect(pgnResult[3].notation).toEqual("a1=N")
+            expect(pgnResult[3].promotion).toEqual("N")
         })
     })
 })

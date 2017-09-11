@@ -20,10 +20,11 @@ class PgnMove {
     fen: string
     check: string
     moveNumber: number
+    promotion: string
     
     constructor(
         fig: string, col: string, row: string, notation: string,
-        disc: string = null, strike: string = null, moveNumber: number,
+        disc: string = null, strike: string = null, moveNumber: number, promotion: string,
         commentBefore='', commentAfter='', commentMove='',
         previousMove: PgnMove, nags: string[] =[], check: string
         ) {
@@ -40,6 +41,7 @@ class PgnMove {
             this.notation = notation
             this.check = check
             this.moveNumber = moveNumber
+            this.promotion = promotion
         }
     
     /**
@@ -49,7 +51,7 @@ class PgnMove {
      */
     static buildMove(params:any): PgnMove {
         let cm = new PgnMove(params.fig, params.col, params.row,
-        params.notation, params.disc, params.strike, params.moveNumber,
+        params.notation, params.disc, params.strike, params.moveNumber, params.promotion,
         params.commentBefore, params.commentAfter, params.commentMove, 
         params.previousMove, params.nags, params.check)
         return cm

@@ -1,3 +1,2 @@
 registryURL=http://api.typings.org/
 rejectUnauthorized=false
-proxy=http://www-3g.dienste.telekom.de:8080
